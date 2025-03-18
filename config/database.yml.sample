@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: |
+    <% if Sidekiq.server? %>
+      <%= ENV.fetch('SIDEKIQ_CONCURRENCY', 25) %>
+    <% else %>
+      <%= ENV.fetch('RAILS_MAX_THREADS', 5) %>
+    <% end %>
+
+development:
+  <<: *default
+  database: rails_development
+
+test:
+  <<: *default
+  database: rails_test
+
+production:
+  <<: *default
+  url: <%= ENV.fetch('DATABASE_URL', nil) %>

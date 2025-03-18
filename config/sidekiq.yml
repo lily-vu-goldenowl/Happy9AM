@@ -1,0 +1,3 @@
+:queues:
+  - event_schedulers
+  - event_processing

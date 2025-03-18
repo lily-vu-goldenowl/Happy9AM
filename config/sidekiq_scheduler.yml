@@ -1,0 +1,6 @@
+birthday_event_scheduler:
+  class: ScheduledEventJob
+  every: '1h'
+  args:
+    - 'birthday' # Event type (can be 'birthday', 'holiday', etc.)
+    - 9 # Target hour for event execution in the user's local timezone.
