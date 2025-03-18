@@ -21,7 +21,7 @@ class EventSchedulerService
     def schedule_event(user, strategy)
       today = Time.now.in_time_zone(user.timezone).to_date
       event_date = user.next_event_date(strategy.event_type)
-      return if event_date.nil? || event_date != today || !EventJobLock.lock(strategy.event_type, user.id)
+      return if !event_date&.today? || !EventJobLock.lock(strategy.event_type, user.id)
 
       event_time = strategy.calculate_event_time(event_date, user.timezone)
       DeliverEventMessageJob.set(wait_until: event_time).perform_later(user.id, strategy.event_type, strategy.hour)
