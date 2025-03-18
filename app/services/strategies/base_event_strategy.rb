@@ -28,6 +28,10 @@ module Strategies
       end
     end
 
+    def scope_records
+      raise NotImplementedError, "Subclasses must implement this method"
+    end
+
     def compose_message(user)
       raise NotImplementedError, "Subclasses must implement this method"
     end

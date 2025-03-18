@@ -5,7 +5,7 @@ class ScheduledEventJob
   def perform(event_type, hour = nil)
     strategy = EventStrategyFactory.create_strategy(event_type, hour)
 
-    User.today_is_birthday.find_each do |user|
+    strategy.scope_records.find_each do |user|
       event_date = user.next_event_date(event_type)
 
       next if !event_date&.today?
