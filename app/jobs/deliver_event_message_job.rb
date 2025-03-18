@@ -18,8 +18,5 @@ class DeliverEventMessageJob < ApplicationJob
         success = strategy.send_message(user)
       end
     end
-
-    # Schedule the next occurrence
-    EventSchedulerService.schedule_event(user, strategy)
   end
 end
