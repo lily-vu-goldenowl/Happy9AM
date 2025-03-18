@@ -5,6 +5,10 @@ module Strategies
       @event_type = 'holiday'
     end
 
+    def scope_records
+      User.all
+    end
+
     def compose_message(user)
       "Happy holidays, #{user.full_name}!"
     end
