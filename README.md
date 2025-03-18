@@ -48,7 +48,7 @@ view more at: `app/services/event_job_lock.rb`
 ### Prerequisites
 - Ruby 3.4.2
 - Rails 8.0.1
-- SQlite
+- PostgreSQL
    - Why? Its simplicity makes it ideal for development and testing, reducing setup time and overhead while still fulfilling the test requirements.
    - For production or larger-scale systems requiring high concurrency, complex queries, or robust data integrity, PostgreSQL would be a better choice.
 - Redis (for Sidekiq)
@@ -60,7 +60,7 @@ Cronjob setup
 :scheduler:
   :schedule:
     birthday_event_scheduler:
-      every: '30m' #Run every 30 minutes to balance efficiency and accuracy.
+      every: '1h' #Run every 1 hour to balance efficiency and accuracy.
       class: ScheduledEventJob
       args:
         - 'birthday' # Event type (can be 'birthday', 'holiday', etc.)
@@ -70,7 +70,7 @@ Cronjob setup
 
 1. Clone the repository:
    ```bash
-    git clone https://github.com/lily-vu-goldenowl/happy9am-birthday-app-test.git && cd happy9am-birthday-app-test
+    git clone git@github.com:lily-vu-goldenowl/Happy9AM.git && cd Happy9AM
    ```
 
 2. Install dependencies:
